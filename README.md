@@ -16,7 +16,7 @@ Uma aplicação web para gerenciar vídeos, com funcionalidades de busca, envio 
 
 ### Exemplo Visual do Projeto
 
-![Imagem do Projeto](https://via.placeholder.com/800x400.png?text=Exemplo+Visual+do+Projeto)
+![chrome-capture-2024-11-23](https://github.com/user-attachments/assets/b79e5b55-f9de-4856-8fb8-09184c312e15)
 
 ## ✔️ Técnicas e Tecnologias Utilizadas
 
@@ -41,7 +41,7 @@ Uma aplicação web para gerenciar vídeos, com funcionalidades de busca, envio 
 - **img/**:
     - Imagens de cabeçalho, favicon e outras.
 - **js/**:
-    - `conectaApi.js`: Responsável pela comunicação com a API local.
+    - `conectaApi.js`: Responsável pela comunicação com a API local e remota.
     - `mostrarVideos.js`: Renderiza a lista de vídeos na página.
     - `buscarVideo.js`: Implementa a funcionalidade de busca.
     - `criarVideo.js`: Trata o envio de vídeos através do formulário.
@@ -50,6 +50,7 @@ Uma aplicação web para gerenciar vídeos, com funcionalidades de busca, envio 
     - `envio-concluido.html`: Página de confirmação após cadastro de vídeo.
 - **index.html**: Página inicial com listagem de vídeos.
 - **db.json**: Simulação do banco de dados para armazenamento dos vídeos.
+- **server.js**: Configuração personalizada para rodar o JSON-Server com suporte a CORS.
 - **package.json** e **package-lock.json**: Arquivos de configuração para dependências Node.js.
 
 ## 🛠️ Abrir e rodar o projeto
@@ -80,9 +81,9 @@ Para iniciar o projeto localmente, siga os passos abaixo:
       ```
 
 4. **Inicie o JSON-Server**:
-    - Rode o servidor local para a API:
+    - Rode o servidor local para a API usando o arquivo `server.js`:
       ```bash
-      npx json-server --watch db.json
+      node server.js
       ```
 
 5. **Abra o Projeto no Navegador**:
@@ -92,7 +93,7 @@ Para iniciar o projeto localmente, siga os passos abaixo:
 
 ### Como realizar o deploy da aplicação:
 
-1. **Hospedar os arquivos estáticos:**
+1. **Hospedar os arquivos estáticos (Frontend):**
     - **Vercel**:
         - Acesse [Vercel](https://vercel.com/).
         - Crie um projeto novo.
@@ -102,22 +103,18 @@ Para iniciar o projeto localmente, siga os passos abaixo:
         - Acesse [Netlify](https://www.netlify.com/).
         - Arraste a pasta do projeto diretamente para a interface do Netlify ou conecte ao repositório GitHub.
 
-2. **API (JSON-Server):**
-    - O **JSON-Server** não pode ser diretamente hospedado nessas plataformas. Para isso, utilize:
-        - **Render.com**:
-            - Acesse [Render](https://render.com/).
-            - Crie um novo serviço e selecione o repositório onde está o `db.json`.
-            - Configure o comando de execução:
-              ```bash
-              npx json-server --watch db.json --port 8080
-              ```
-            - A URL gerada pelo Render será utilizada como base para o consumo da API na aplicação.
+2. **Hospedar a API (JSON-Server):**
+    - Utilize o [Render.com](https://render.com/) para hospedar a API:
+        - Crie um novo serviço **Web Service** e conecte ao repositório onde está o projeto.
+        - Configure o comando de execução:
+          ```bash
+          node server.js
+          ```
+        - A URL gerada pelo Render será utilizada como base para o consumo da API na aplicação.
 
-3. **Atualizar URLs na aplicação:**
-    - Após hospedar o `JSON-Server`, substitua as referências `http://localhost:3000` no arquivo `conectaApi.js` pela URL do servidor hospedado (por exemplo: `https://sua-api.render.com`).
+3. **Atualizar URLs no Frontend**:
+    - Após hospedar a API, substitua as referências `http://localhost:3000` no arquivo `conectaApi.js` pela URL gerada pelo Render (por exemplo: `https://sua-api.render.com`).
 
-4. **Acesse sua aplicação:**
-    - Após configurar os serviços, você terá dois links:
-        - **Frontend:** Gerado pelo Vercel ou Netlify.
-        - **Backend:** URL do JSON-Server no Render.
-    - A aplicação estará completamente funcional online.
+4. **Testar a aplicação**:
+    - Certifique-se de que o frontend e o backend estão funcionando corretamente juntos.
+    - Teste funcionalidades como busca e envio de vídeos.

@@ -16,7 +16,7 @@ A web application for managing videos, with features like search, upload, and di
 
 ### Project Preview
 
-![Project Preview](https://via.placeholder.com/800x400.png?text=Project+Preview)
+![chrome-capture-2024-11-23](https://github.com/user-attachments/assets/b79e5b55-f9de-4856-8fb8-09184c312e15)
 
 ## ✔️ Technologies and Techniques Used
 
